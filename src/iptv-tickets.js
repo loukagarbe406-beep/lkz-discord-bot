@@ -15,11 +15,10 @@ import {
 
 export const PLANS = [
   { id: "24h", label: "Test 24h - Indisponible", price: "Indisponible", months: 0, free: true, unavailable: true },
-  { id: "1m", label: "1 mois", price: "9,99€", months: 1 },
-  { id: "3m", label: "3 mois", price: "19,99€", months: 3 },
-  { id: "6m", label: "6 mois ⭐", price: "34,99€", months: 6, best: true },
-  { id: "12m", label: "12 mois", price: "57,99€", months: 12 },
-  { id: "24m", label: "24 mois", price: "78,99€", months: 24 },
+  { id: "1m", label: "1 mois", price: "10 €", months: 1 },
+  { id: "3m", label: "3 mois", price: "25 €", months: 3 },
+  { id: "6m", label: "6 mois ⭐", price: "45 €", months: 6, best: true },
+  { id: "12m", label: "12 mois", price: "70 €", months: 12 },
 ];
 
 export const PAYMENTS = [
@@ -87,47 +86,48 @@ function isOpenTicketForUser(channel, safeName, userId) {
 
 export function buildOfferEmbed() {
   return new EmbedBuilder()
-    .setColor(0x3b82f6)
-    .setTitle("🔥 COFFRE TON IPTV DÈS 9,99€")
+    .setColor(0x22c55e)
+    .setTitle("✨ Contenu disponible")
     .setDescription(
       [
-        "**UFC, NBA, F1, Ligue 1, LDC… TOUT EST ICI.**",
+        "Avec **Kayou Shop**, accède à un gros catalogue et un suivi clair **avant, pendant et après** ta commande.",
         "",
-        `Sur **${SITE_NAME}** : les matchs en direct sur le site`,
-        `➜ ${SITE_URL}`,
-        "",
-        "Et en plus : **IPTV Premium** — sport, chaînes, films & séries.",
-        "",
-        "⚽ Ligue 1 / LDC / Liga — saison en Full HD",
-        "🏀 NBA",
-        "🥊 UFC & Boxe",
-        "🏎️ Formule 1",
-        "🎬 Films & Séries illimités",
+        "📺 **+28 300** chaînes TV · **+180** pays",
+        "🎬 **+157 000** films & **+50 000** séries",
+        "🖥️ Qualité **SD / HD / FHD / UHD / 4K**",
+        "📱 TV, PC, smartphone, box IPTV…",
+        "⏱️ Formules **1 · 3 · 6 · 12** mois",
       ].join("\n")
     )
     .addFields(
       {
-        name: "\u200b",
+        name: "⚡ Une expérience fluide",
         value: [
-          "✅ Qualité **4K / FHD / HD**",
-          "✅ Serveurs fluides",
-          "✅ **+20 000** chaînes FR + internationales",
-          "⛔ Test **24h** indisponible",
+          "▸ Infra pensée pour limiter coupures & freezes",
+          "▸ Flux stable selon ta connexion et ton appareil",
+          "▸ Serveurs suivis pour garder une image propre",
         ].join("\n"),
       },
       {
-        name: "💸 TARIFS",
+        name: "💎 Nos offres",
         value: [
-          "⛔ Test 24h → **Indisponible**",
-          "",
-          "📅 1 mois → **9,99€**",
-          "📅 3 mois → **19,99€**",
-          "📅 6 mois → **34,99€** ⭐ le plus rentable",
-          "📅 12 mois → **57,99€**",
-          "📅 24 mois → **78,99€**",
+          "🗓️ **1 mois** — **10 €**",
+          "🗓️ **3 mois** — **25 €**",
+          "🗓️ **6 mois** — **45 €**",
+          "🗓️ **12 mois** — **70 €**",
+        ].join("\n"),
+      },
+      {
+        name: "🛡️ Pourquoi Kayou Shop ?",
+        value: [
+          "🚀 Activation rapide",
+          "🔒 Service fiable & sécurisé",
+          "💰 Excellent rapport qualité / prix",
+          "💬 Support réactif",
         ].join("\n"),
       }
-    );
+    )
+    .setFooter({ text: "Kayou Shop · IPTV" });
 }
 
 export function buildPanelComponents() {
@@ -135,9 +135,9 @@ export function buildPanelComponents() {
     new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId("iptv-open")
-        .setLabel("Ouvrir un ticket IPTV")
-        .setEmoji("🎫")
-        .setStyle(ButtonStyle.Primary)
+        .setLabel("Souscrire à un abonnement")
+        .setEmoji("🛒")
+        .setStyle(ButtonStyle.Success)
     ),
   ];
 }

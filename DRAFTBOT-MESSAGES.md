@@ -61,46 +61,40 @@ Le non-respect = warn / mute / ban.
 
 **Titre**
 ```
-🔥 COFFRE TON IPTV DÈS 9,99€
+✨ Contenu disponible
 ```
 
 **Description**
 ```
-**UFC, NBA, F1, Ligue 1, LDC… TOUT EST ICI.**
+Avec **Kayou Shop**, accède à un gros catalogue et un suivi clair **avant, pendant et après** ta commande.
 
-Sur **LMDS+** : les matchs en direct sur le site
-➜ https://lmdslive.pages.dev
+📺 **+28 300** chaînes TV · **+180** pays
+🎬 **+157 000** films & **+50 000** séries
+🖥️ Qualité **SD / HD / FHD / UHD / 4K**
+📱 TV, PC, smartphone, box IPTV…
+⏱️ Formules **1 · 3 · 6 · 12** mois
 
-Et en plus : **IPTV Premium** — sport, chaînes, films & séries.
+⚡ **Une expérience fluide**
+▸ Infra pensée pour limiter coupures & freezes
+▸ Flux stable selon ta connexion et ton appareil
+▸ Serveurs suivis pour garder une image propre
 
-⚽ Ligue 1 / LDC / Liga — saison en Full HD
-🏀 NBA
-🥊 UFC & Boxe
-🏎️ Formule 1
-🎬 Films & Séries illimités
+💎 **Nos offres**
+🗓️ 1 mois — **10 €**
+🗓️ 3 mois — **25 €**
+🗓️ 6 mois — **45 €**
+🗓️ 12 mois — **70 €**
 
-✅ Qualité **4K / FHD / HD**
-✅ Serveurs fluides
-✅ **+20 000** chaînes FR + internationales
-✅ Test **24h** dispo
-
-━━━━━━━━━━━━━━━━━━
-💸 **TARIFS**
-🎁 Test 24h → Gratuit
-📅 1 mois → **9,99€**
-📅 3 mois → **19,99€**
-📅 6 mois → **34,99€** ⭐ le plus rentable
-📅 12 mois → **57,99€**
-📅 24 mois → **78,99€**
-━━━━━━━━━━━━━━━━━━
-
-👇 **Ouvre un ticket** pour commander / tester.
-Owner IPTV : **LKZ PEUPLE**
+🛡️ **Pourquoi Kayou Shop ?**
+🚀 Activation rapide
+🔒 Service fiable & sécurisé
+💰 Excellent rapport qualité / prix
+💬 Support réactif
 ```
 
 **Bouton ticket (label)**
 ```
-🎫 Ouvrir un ticket IPTV
+🛒 Souscrire à un abonnement
 ```
 
 ---
