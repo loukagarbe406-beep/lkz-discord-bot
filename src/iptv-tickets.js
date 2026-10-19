@@ -274,41 +274,18 @@ function orderPreviewEmbed(userId) {
   const plan = planById(cur.planId);
   const pay = payById(cur.payId);
 
-  const offerLines = PLANS.map((p) => {
-    const tag = p.best ? " · recommandé" : "";
-    const mark = plan?.id === p.id ? " ✅" : "";
-    return `${p.emoji || "🔹"} **${p.label}** — **${p.price}**${tag}${mark}`;
-  });
-
   const lines = [
     `# Souscription ${SITE_NAME}`,
     "",
-    "Sélectionne ton offre, puis ton moyen de paiement.",
-    "",
-    "## Quelle offre voulez-vous ?",
-    ...offerLines,
-    "",
-    "## Moyen de paiement",
+    plan
+      ? `**Offre** · ${plan.emoji || "🔹"} ${plan.label} — **${plan.price}**`
+      : "**Offre** · _à choisir_",
+    plan?.free
+      ? "**Paiement** · aucun (test gratuit)"
+      : pay
+        ? `**Paiement** · ${pay.emoji || "💳"} ${pay.label}`
+        : "**Paiement** · _à choisir_",
   ];
-
-  if (!plan) {
-    lines.push("_Choisis une offre ci-dessous pour continuer._");
-  } else if (plan.unavailable) {
-    lines.push("⛔ Cette offre est temporairement indisponible.");
-  } else if (plan.free) {
-    lines.push("🧪 **Test gratuit** — aucun paiement requis.");
-  } else if (pay) {
-    lines.push(`${pay.emoji || "💳"} **${pay.label}** — ${pay.blurb || "sélectionné"}`);
-  } else {
-    lines.push("_Choisis un moyen de paiement ci-dessous._");
-  }
-
-  lines.push("");
-  if (plan && !plan.unavailable && (plan.free || pay)) {
-    lines.push("Tout est prêt → clique **Valider et ouvrir mon ticket**.");
-  } else {
-    lines.push("Complète ta sélection, puis valide pour ouvrir ton ticket.");
-  }
 
   return new EmbedBuilder().setColor(0x3b82f6).setDescription(lines.join("\n"));
 }
