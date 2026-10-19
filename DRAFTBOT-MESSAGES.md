@@ -61,40 +61,40 @@ Le non-respect = warn / mute / ban.
 
 **Titre**
 ```
-✨ Contenu disponible
+Contenu disponible
 ```
 
 **Description**
 ```
-Avec **Kayou Shop**, accède à un gros catalogue et un suivi clair **avant, pendant et après** ta commande.
+Avec **LMDS+**, profitez d’un large catalogue de contenus et d’un accompagnement professionnel avant, pendant et après votre commande.
 
-📺 **+28 300** chaînes TV · **+180** pays
-🎬 **+157 000** films & **+50 000** séries
-🖥️ Qualité **SD / HD / FHD / UHD / 4K**
-📱 TV, PC, smartphone, box IPTV…
-⏱️ Formules **1 · 3 · 6 · 12** mois
+• Plus de **28 300** chaînes TV issues de plus de **180** pays
+• Plus de **157 000** films et **50 000** séries
+• Qualité disponible en **SD, HD, FHD, UHD** et **4K**
+• Compatible avec la plupart des téléviseurs, ordinateurs, smartphones et appareils IPTV
+• Abonnements disponibles pour **1, 3, 6** ou **12** mois
 
-⚡ **Une expérience fluide**
-▸ Infra pensée pour limiter coupures & freezes
-▸ Flux stable selon ta connexion et ton appareil
-▸ Serveurs suivis pour garder une image propre
+**Une expérience fluide et optimisée**
+→ Infrastructure optimisée pour limiter les interruptions et les freezes
+→ Diffusion stable selon votre connexion et votre appareil
+→ Serveurs surveillés afin de maintenir une qualité de visionnage optimale
 
-💎 **Nos offres**
-🗓️ 1 mois — **10 €**
-🗓️ 3 mois — **25 €**
-🗓️ 6 mois — **45 €**
-🗓️ 12 mois — **70 €**
+**Nos offres**
+📅 1 mois — **10 €**
+📅 3 mois — **25 €**
+📅 6 mois — **45 €**
+📅 12 mois — **70 €**
 
-🛡️ **Pourquoi Kayou Shop ?**
-🚀 Activation rapide
-🔒 Service fiable & sécurisé
-💰 Excellent rapport qualité / prix
-💬 Support réactif
+**Pourquoi choisir LMDS+ ?**
+→ Livraison instantanée
+→ Service fiable et sécurisé
+→ Excellent rapport qualité / prix
+→ Assistance rapide et efficace
 ```
 
-**Bouton ticket (label)**
+**Bouton ticket (label)** — style gris (Secondary)
 ```
-🛒 Souscrire à un abonnement
+Souscrire à un abonnement
 ```
 
 ---

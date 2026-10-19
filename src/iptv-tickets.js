@@ -87,47 +87,47 @@ function isOpenTicketForUser(channel, safeName, userId) {
 export function buildOfferEmbed() {
   return new EmbedBuilder()
     .setColor(0x22c55e)
-    .setTitle("✨ Contenu disponible")
+    .setTitle("Contenu disponible")
     .setDescription(
       [
-        "Avec **Kayou Shop**, accède à un gros catalogue et un suivi clair **avant, pendant et après** ta commande.",
+        `Avec **${SITE_NAME}**, profitez d’un large catalogue de contenus et d’un accompagnement professionnel avant, pendant et après votre commande.`,
         "",
-        "📺 **+28 300** chaînes TV · **+180** pays",
-        "🎬 **+157 000** films & **+50 000** séries",
-        "🖥️ Qualité **SD / HD / FHD / UHD / 4K**",
-        "📱 TV, PC, smartphone, box IPTV…",
-        "⏱️ Formules **1 · 3 · 6 · 12** mois",
+        "• Plus de **28 300** chaînes TV issues de plus de **180** pays",
+        "• Plus de **157 000** films et **50 000** séries",
+        "• Qualité disponible en **SD, HD, FHD, UHD** et **4K**",
+        "• Compatible avec la plupart des téléviseurs, ordinateurs, smartphones et appareils IPTV",
+        "• Abonnements disponibles pour **1, 3, 6** ou **12** mois",
       ].join("\n")
     )
     .addFields(
       {
-        name: "⚡ Une expérience fluide",
+        name: "Une expérience fluide et optimisée",
         value: [
-          "▸ Infra pensée pour limiter coupures & freezes",
-          "▸ Flux stable selon ta connexion et ton appareil",
-          "▸ Serveurs suivis pour garder une image propre",
+          "→ Infrastructure optimisée pour limiter les interruptions et les freezes",
+          "→ Diffusion stable selon votre connexion et votre appareil",
+          "→ Serveurs surveillés afin de maintenir une qualité de visionnage optimale",
         ].join("\n"),
       },
       {
-        name: "💎 Nos offres",
+        name: "Nos offres",
         value: [
-          "🗓️ **1 mois** — **10 €**",
-          "🗓️ **3 mois** — **25 €**",
-          "🗓️ **6 mois** — **45 €**",
-          "🗓️ **12 mois** — **70 €**",
+          "📅 **1 mois** — **10 €**",
+          "📅 **3 mois** — **25 €**",
+          "📅 **6 mois** — **45 €**",
+          "📅 **12 mois** — **70 €**",
         ].join("\n"),
       },
       {
-        name: "🛡️ Pourquoi Kayou Shop ?",
+        name: `Pourquoi choisir ${SITE_NAME} ?`,
         value: [
-          "🚀 Activation rapide",
-          "🔒 Service fiable & sécurisé",
-          "💰 Excellent rapport qualité / prix",
-          "💬 Support réactif",
+          "→ Livraison instantanée",
+          "→ Service fiable et sécurisé",
+          "→ Excellent rapport qualité / prix",
+          "→ Assistance rapide et efficace",
         ].join("\n"),
       }
     )
-    .setFooter({ text: "Kayou Shop · IPTV" });
+    .setFooter({ text: `${SITE_NAME} · IPTV` });
 }
 
 export function buildPanelComponents() {
@@ -136,8 +136,7 @@ export function buildPanelComponents() {
       new ButtonBuilder()
         .setCustomId("iptv-open")
         .setLabel("Souscrire à un abonnement")
-        .setEmoji("🛒")
-        .setStyle(ButtonStyle.Success)
+        .setStyle(ButtonStyle.Secondary)
     ),
   ];
 }
