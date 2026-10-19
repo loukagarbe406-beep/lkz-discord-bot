@@ -1,0 +1,43 @@
+# Déployer sur FadeHost (gratuit 24/7)
+
+## 1. GitHub (une fois)
+
+```powershell
+cd C:\Users\LOUKA\lkz-discord-bot
+gh auth login
+gh repo create lkz-discord-bot --private --source=. --remote=origin --push
+```
+
+## 2. FadeHost
+
+1. Compte : https://fadehost.com (vérifie l’email, pas de CB)
+2. **Bots → Host a bot → Discord bot → Your repository**
+3. Colle l’URL GitHub du repo
+4. Token Discord + variables d’environnement (copier depuis ton `.env` local) :
+
+```
+DISCORD_TOKEN=...
+GUILD_ID=...
+PRONOS_CHANNEL_ID=...
+LINKS_CHANNEL_ID=...
+SITE_CHANNEL_ID=...
+ENABLE_MESSAGE_CONTENT=1
+SITE_URL=...
+SCORES_POLL_MS=180000
+PAYPAL_EMAIL=...
+PAYPAL_URL=...
+IPTV_CHANNEL_ID=...
+IPTV_OWNER_ID=...
+IPTV_STAFF_ROLE_ID=...
+IPTV_TICKETS_CATEGORY_ID=...
+BANK_IBAN=...
+```
+
+5. Start command : `npm start` (détecté auto)
+6. **Deploy**
+
+Le bot reste allumé même si ton PC est éteint. Ne pas activer “Sleeps when idle” sur le bot (le process free reste déjà always-on).
+
+## 3. Après deploy
+
+Sur ton PC : arrête le bot local (PM2 / terminal) pour éviter 2 instances avec le même token.
