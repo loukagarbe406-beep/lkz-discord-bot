@@ -61,38 +61,36 @@ Le non-respect = warn / mute / ban.
 
 **Titre**
 ```
-Contenu disponible
+🎬  LMDS+ IPTV
 ```
 
 **Description**
 ```
-Avec **LMDS+**, profitez d’un large catalogue de contenus et d’un accompagnement professionnel avant, pendant et après votre commande.
+**Sport, chaînes, films & séries — tout en un seul abo.**
 
-• Plus de **28 300** chaînes TV issues de plus de **180** pays
-• Plus de **157 000** films et **50 000** séries
-• Qualité disponible en **SD, HD, FHD, UHD** et **4K**
-• Compatible avec la plupart des téléviseurs, ordinateurs, smartphones et appareils IPTV
-• Abonnements disponibles pour **1, 3, 6** ou **12** mois
+**+28 300** chaînes · **+180** pays
+**+157 000** films · **+50 000** séries
+**SD → 4K** selon ton appareil
+**TV · box · téléphone · PC**
 
-**Une expérience fluide et optimisée**
-→ Infrastructure optimisée pour limiter les interruptions et les freezes
-→ Diffusion stable selon votre connexion et votre appareil
-→ Serveurs surveillés afin de maintenir une qualité de visionnage optimale
+⚡ **Qualité & stabilité**
+**Flux stables**, peu de coupures
+**Serveurs suivis** en continu
+**Activation rapide** après paiement
 
-**Nos offres**
-📅 1 mois — **10 €**
-📅 3 mois — **25 €**
-📅 6 mois — **45 €**
-📅 12 mois — **70 €**
+💳 **Tarifs**
+**1 mois**  ·  **10 €**
+**3 mois**  ·  **25 €**
+**6 mois**  ·  **45 €**
+**12 mois**  ·  **70 €**
 
-**Pourquoi choisir LMDS+ ?**
-→ Livraison instantanée
-→ Service fiable et sécurisé
-→ Excellent rapport qualité / prix
-→ Assistance rapide et efficace
+✅ **Inclus**
+**Support réactif** sur Discord
+**Paiement** PayPal ou virement
+**Accès** dès validation
 ```
 
-**Bouton ticket (label)** — style gris (Secondary)
+**Bouton** — gris (Secondary)
 ```
 Souscrire à un abonnement
 ```

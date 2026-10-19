@@ -86,48 +86,46 @@ function isOpenTicketForUser(channel, safeName, userId) {
 
 export function buildOfferEmbed() {
   return new EmbedBuilder()
-    .setColor(0x22c55e)
-    .setTitle("Contenu disponible")
+    .setColor(0x3b82f6)
+    .setTitle(`🎬  ${SITE_NAME} IPTV`)
     .setDescription(
       [
-        `Avec **${SITE_NAME}**, profitez d’un large catalogue de contenus et d’un accompagnement professionnel avant, pendant et après votre commande.`,
+        "**Sport, chaînes, films & séries — tout en un seul abo.**",
         "",
-        "• Plus de **28 300** chaînes TV issues de plus de **180** pays",
-        "• Plus de **157 000** films et **50 000** séries",
-        "• Qualité disponible en **SD, HD, FHD, UHD** et **4K**",
-        "• Compatible avec la plupart des téléviseurs, ordinateurs, smartphones et appareils IPTV",
-        "• Abonnements disponibles pour **1, 3, 6** ou **12** mois",
+        "**+28 300** chaînes · **+180** pays",
+        "**+157 000** films · **+50 000** séries",
+        "**SD → 4K** selon ton appareil",
+        "**TV · box · téléphone · PC**",
       ].join("\n")
     )
     .addFields(
       {
-        name: "Une expérience fluide et optimisée",
+        name: "⚡  Qualité & stabilité",
         value: [
-          "→ Infrastructure optimisée pour limiter les interruptions et les freezes",
-          "→ Diffusion stable selon votre connexion et votre appareil",
-          "→ Serveurs surveillés afin de maintenir une qualité de visionnage optimale",
+          "**Flux stables**, peu de coupures",
+          "**Serveurs suivis** en continu",
+          "**Activation rapide** après paiement",
         ].join("\n"),
       },
       {
-        name: "Nos offres",
+        name: "💳  Tarifs",
         value: [
-          "📅 **1 mois** — **10 €**",
-          "📅 **3 mois** — **25 €**",
-          "📅 **6 mois** — **45 €**",
-          "📅 **12 mois** — **70 €**",
+          "**1 mois**  ·  **10 €**",
+          "**3 mois**  ·  **25 €**",
+          "**6 mois**  ·  **45 €**",
+          "**12 mois**  ·  **70 €**",
         ].join("\n"),
       },
       {
-        name: `Pourquoi choisir ${SITE_NAME} ?`,
+        name: "✅  Inclus",
         value: [
-          "→ Livraison instantanée",
-          "→ Service fiable et sécurisé",
-          "→ Excellent rapport qualité / prix",
-          "→ Assistance rapide et efficace",
+          "**Support réactif** sur Discord",
+          "**Paiement** PayPal ou virement",
+          "**Accès** dès validation",
         ].join("\n"),
       }
     )
-    .setFooter({ text: `${SITE_NAME} · IPTV` });
+    .setFooter({ text: `${SITE_NAME} · Clique le bouton pour commander` });
 }
 
 export function buildPanelComponents() {
