@@ -246,7 +246,6 @@ function onBotReady() {
 }
 
 client.once("clientReady", onBotReady);
-client.once("ready", onBotReady);
 
 function buildIntroEmbed() {
   return new EmbedBuilder()

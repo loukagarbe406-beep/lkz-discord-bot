@@ -193,7 +193,7 @@ function planSelectOptions(cur) {
         : `${p.label} — ${p.price}`
       ).slice(0, 100),
       value: p.id,
-      emoji: p.emoji || "🔹",
+      emoji: { name: p.emoji || "🔹" },
       description: (
         p.unavailable
           ? "Temporairement indisponible"
@@ -211,7 +211,7 @@ function paySelectOptions(cur) {
     const opt = {
       label: p.label.slice(0, 100),
       value: p.id,
-      emoji: p.emoji || "💳",
+      emoji: { name: p.emoji || "💳" },
       description: (p.blurb || "Moyen de paiement").slice(0, 100),
     };
     if (cur.payId === p.id) opt.default = true;
@@ -317,12 +317,25 @@ export async function handleIptvButton(interaction) {
   const id = interaction.customId;
 
   if (id === "iptv-open") {
+    /* Ack immédiat (<3s) sinon Discord affiche « n’a pas répondu à temps » */
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
     pendingOrders.set(interaction.user.id, {});
-    await interaction.reply({
-      embeds: [orderPreviewEmbed(interaction.user.id)],
-      components: orderSelectRows(interaction.user.id),
-      flags: MessageFlags.Ephemeral,
-    });
+    try {
+      await interaction.editReply({
+        embeds: [orderPreviewEmbed(interaction.user.id)],
+        components: orderSelectRows(interaction.user.id),
+      });
+    } catch (err) {
+      console.error("iptv-open editReply:", err?.message || err);
+      await interaction
+        .editReply({
+          content:
+            "Impossible d’afficher le formulaire. Réessaie dans quelques secondes.",
+          embeds: [],
+          components: [],
+        })
+        .catch(() => {});
+    }
     return true;
   }
 
