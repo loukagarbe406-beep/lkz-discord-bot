@@ -87,9 +87,10 @@ function isOpenTicketForUser(channel, safeName, userId) {
 export function buildOfferEmbed() {
   return new EmbedBuilder()
     .setColor(0x3b82f6)
-    .setTitle("Contenu disponible")
     .setDescription(
       [
+        "# Contenu disponible",
+        "",
         `Sur **${SITE_NAME}**, tu as un catalogue large et une équipe qui t’accompagne **avant, pendant et après** ta commande.`,
         "",
         `• Plus de **28 300** chaînes TV dans **+180** pays`,
@@ -98,18 +99,18 @@ export function buildOfferEmbed() {
         `• Compatible **TV, PC, smartphone** et box IPTV`,
         `• Abonnements **1, 3, 6** ou **12** mois`,
         "",
-        "**Une expérience fluide**",
+        "## Une expérience fluide",
         "→ Infra optimisée pour limiter coupures et freezes",
         "→ Diffusion stable selon ta connexion et ton appareil",
         "→ Serveurs surveillés pour garder une bonne qualité",
         "",
-        "**Nos offres**",
-        "🔹 **1 mois** — **10 €**",
-        "🔹 **3 mois** — **25 €**",
-        "🔹 **6 mois** — **45 €**",
-        "🔹 **12 mois** — **70 €**",
+        "## Nos offres",
+        "### 🔹 1 mois — 10 €",
+        "### 🔹 3 mois — 25 €",
+        "### 🔹 6 mois — 45 €",
+        "### 🔹 12 mois — 70 €",
         "",
-        `**Pourquoi ${SITE_NAME} ?**`,
+        `## Pourquoi ${SITE_NAME} ?`,
         "→ Activation rapide",
         "→ Service fiable et sécurisé",
         "→ Bon rapport qualité / prix",
