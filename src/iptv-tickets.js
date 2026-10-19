@@ -105,6 +105,7 @@ export function buildOfferEmbed() {
         "→ Serveurs surveillés pour garder une bonne qualité",
         "",
         "## Nos offres",
+        "🔹 **Test 24h** — **gratuit** (pour tester le serveur)",
         "🔹 **1 mois** — **10 €**",
         "🔹 **3 mois** — **25 €**",
         "🔹 **6 mois** — **45 €**",
