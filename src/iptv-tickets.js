@@ -87,45 +87,35 @@ function isOpenTicketForUser(channel, safeName, userId) {
 export function buildOfferEmbed() {
   return new EmbedBuilder()
     .setColor(0x3b82f6)
-    .setTitle(`🎬  ${SITE_NAME} IPTV`)
+    .setTitle("Contenu disponible")
     .setDescription(
       [
-        "**Sport, chaînes, films & séries — tout en un seul abo.**",
+        `Sur **${SITE_NAME}**, tu as un catalogue large et une équipe qui t’accompagne **avant, pendant et après** ta commande.`,
         "",
-        "**+28 300** chaînes · **+180** pays",
-        "**+157 000** films · **+50 000** séries",
-        "**SD → 4K** selon ton appareil",
-        "**TV · box · téléphone · PC**",
+        `• Plus de **28 300** chaînes TV dans **+180** pays`,
+        `• Plus de **157 000** films et **50 000** séries`,
+        `• Qualité **SD / HD / FHD / UHD / 4K**`,
+        `• Compatible **TV, PC, smartphone** et box IPTV`,
+        `• Abonnements **1, 3, 6** ou **12** mois`,
+        "",
+        "**Une expérience fluide**",
+        "→ Infra optimisée pour limiter coupures et freezes",
+        "→ Diffusion stable selon ta connexion et ton appareil",
+        "→ Serveurs surveillés pour garder une bonne qualité",
+        "",
+        "**Nos offres**",
+        "🔹 **1 mois** — **10 €**",
+        "🔹 **3 mois** — **25 €**",
+        "🔹 **6 mois** — **45 €**",
+        "🔹 **12 mois** — **70 €**",
+        "",
+        `**Pourquoi ${SITE_NAME} ?**`,
+        "→ Activation rapide",
+        "→ Service fiable et sécurisé",
+        "→ Bon rapport qualité / prix",
+        "→ Assistance réactive sur Discord",
       ].join("\n")
-    )
-    .addFields(
-      {
-        name: "⚡  Qualité & stabilité",
-        value: [
-          "**Flux stables**, peu de coupures",
-          "**Serveurs suivis** en continu",
-          "**Activation rapide** après paiement",
-        ].join("\n"),
-      },
-      {
-        name: "💳  Tarifs",
-        value: [
-          "**1 mois**  ·  **10 €**",
-          "**3 mois**  ·  **25 €**",
-          "**6 mois**  ·  **45 €**",
-          "**12 mois**  ·  **70 €**",
-        ].join("\n"),
-      },
-      {
-        name: "✅  Inclus",
-        value: [
-          "**Support réactif** sur Discord",
-          "**Paiement** PayPal ou virement",
-          "**Accès** dès validation",
-        ].join("\n"),
-      }
-    )
-    .setFooter({ text: `${SITE_NAME} · Clique le bouton pour commander` });
+    );
 }
 
 export function buildPanelComponents() {
