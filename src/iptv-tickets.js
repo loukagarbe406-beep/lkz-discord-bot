@@ -14,16 +14,63 @@ import {
 } from "discord.js";
 
 export const PLANS = [
-  { id: "24h", label: "Test 24h - Indisponible", price: "Indisponible", months: 0, free: true, unavailable: true },
-  { id: "1m", label: "1 mois", price: "10 €", months: 1 },
-  { id: "3m", label: "3 mois", price: "25 €", months: 3 },
-  { id: "6m", label: "6 mois ⭐", price: "45 €", months: 6, best: true },
-  { id: "12m", label: "12 mois", price: "70 €", months: 12 },
+  {
+    id: "24h",
+    label: "Test 24h",
+    price: "Gratuit",
+    months: 0,
+    free: true,
+    emoji: "🧪",
+    blurb: "Pour tester le serveur",
+  },
+  {
+    id: "1m",
+    label: "1 mois",
+    price: "10 €",
+    months: 1,
+    emoji: "📅",
+    blurb: "Idéal pour démarrer",
+  },
+  {
+    id: "3m",
+    label: "3 mois",
+    price: "25 €",
+    months: 3,
+    emoji: "📆",
+    blurb: "Le bon compromis",
+  },
+  {
+    id: "6m",
+    label: "6 mois",
+    price: "45 €",
+    months: 6,
+    best: true,
+    emoji: "⭐",
+    blurb: "Le plus rentable",
+  },
+  {
+    id: "12m",
+    label: "12 mois",
+    price: "70 €",
+    months: 12,
+    emoji: "🏆",
+    blurb: "Meilleur prix / mois",
+  },
 ];
 
 export const PAYMENTS = [
-  { id: "paypal", label: "PayPal", emoji: "💳" },
-  { id: "iban", label: "Virement bancaire", emoji: "🏦" },
+  {
+    id: "paypal",
+    label: "PayPal",
+    emoji: "💳",
+    blurb: "Paiement rapide et sécurisé",
+  },
+  {
+    id: "iban",
+    label: "Virement bancaire",
+    emoji: "🏦",
+    blurb: "Virement SEPA (IBAN)",
+  },
 ];
 
 const DEFAULT_IBAN = "FR38 3000 2050 0000 0085 7593 A21";
@@ -142,16 +189,17 @@ function planSelectOptions(cur) {
   return PLANS.map((p) => {
     const opt = {
       label: (p.unavailable
-        ? p.label
-        : `${p.label} - ${p.price}`
+        ? `${p.label} — indisponible`
+        : `${p.label} — ${p.price}`
       ).slice(0, 100),
       value: p.id,
+      emoji: p.emoji || "🔹",
+      description: (
+        p.unavailable
+          ? "Temporairement indisponible"
+          : p.blurb || "Abonnement IPTV"
+      ).slice(0, 100),
     };
-    /* Jamais description: undefined — Discord fait tourner le select en boucle */
-    if (p.unavailable) opt.description = "Temporairement indisponible";
-    else if (p.best) opt.description = "Le plus rentable";
-    else if (p.free) opt.description = "Essai sans engagement";
-    else opt.description = "Abonnement IPTV";
     /* Ne jamais envoyer default:false — Discord peut bloquer le select */
     if (cur.planId === p.id) opt.default = true;
     return opt;
@@ -163,7 +211,8 @@ function paySelectOptions(cur) {
     const opt = {
       label: p.label.slice(0, 100),
       value: p.id,
-      description: p.id === "paypal" ? "Paiement PayPal" : "Virement IBAN",
+      emoji: p.emoji || "💳",
+      description: (p.blurb || "Moyen de paiement").slice(0, 100),
     };
     if (cur.payId === p.id) opt.default = true;
     return opt;
@@ -173,40 +222,47 @@ function paySelectOptions(cur) {
 function orderSelectRows(userId) {
   const cur = pendingOrders.get(userId) || {};
   const plan = planById(cur.planId);
+  const pay = payById(cur.payId);
+  const needsPay = !!(plan && !plan.free && !plan.unavailable);
+
   const planRow = new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder()
       .setCustomId("iptv-plan")
       .setPlaceholder(
-        cur.planId
-          ? `Duree : ${plan?.label || "?"} - ${plan?.price || "?"}`
-          : "1) Choisis la duree"
+        plan
+          ? `Offre : ${plan.label} — ${plan.price}`
+          : "Quelle offre voulez-vous ?"
       )
       .addOptions(planSelectOptions(cur))
   );
 
-  const payRow = new ActionRowBuilder().addComponents(
-    new StringSelectMenuBuilder()
-      .setCustomId("iptv-pay")
-      .setPlaceholder(
-        cur.payId
-          ? `Paiement : ${payById(cur.payId)?.label || "?"}`
-          : "2) Choisis le moyen de paiement"
-      )
-      .addOptions(paySelectOptions(cur))
-  );
+  const payMenu = new StringSelectMenuBuilder()
+    .setCustomId("iptv-pay")
+    .setPlaceholder(
+      !plan
+        ? "Choisis d’abord une offre"
+        : plan.free
+          ? "Aucun paiement (test gratuit)"
+          : pay
+            ? `Paiement : ${pay.label}`
+            : "Quel moyen de paiement ?"
+    )
+    .setDisabled(!needsPay)
+    .addOptions(paySelectOptions(cur));
 
-  const selectedPlan = planById(cur.planId);
+  const payRow = new ActionRowBuilder().addComponents(payMenu);
+
   const canConfirm = !!(
     cur.planId &&
-    !selectedPlan?.unavailable &&
-    (selectedPlan?.free || cur.payId)
+    !plan?.unavailable &&
+    (plan?.free || cur.payId)
   );
 
   const btnRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
       .setCustomId("iptv-confirm")
-      .setLabel("Confirmer & ouvrir le ticket")
-      .setStyle(ButtonStyle.Success)
+      .setLabel("Valider et ouvrir mon ticket")
+      .setStyle(ButtonStyle.Primary)
       .setDisabled(!canConfirm)
   );
 
@@ -217,23 +273,44 @@ function orderPreviewEmbed(userId) {
   const cur = pendingOrders.get(userId) || {};
   const plan = planById(cur.planId);
   const pay = payById(cur.payId);
-  return new EmbedBuilder()
-    .setColor(0xa855f7)
-    .setTitle("Commande IPTV")
-    .setDescription(
-      [
-        plan
-          ? `**Durée** : ${plan.label} — **${plan.price}**`
-          : "_Choisis une durée_",
-        plan?.free
-          ? "**Paiement** : aucun (test gratuit)"
-          : pay
-            ? `**Paiement** : ${pay.label}`
-            : "_Choisis un moyen de paiement_",
-        "",
-        "Quand c’est bon, clique **Confirmer & ouvrir le ticket**.",
-      ].join("\n")
-    );
+
+  const offerLines = PLANS.map((p) => {
+    const tag = p.best ? " · recommandé" : "";
+    const mark = plan?.id === p.id ? " ✅" : "";
+    return `${p.emoji || "🔹"} **${p.label}** — **${p.price}**${tag}${mark}`;
+  });
+
+  const lines = [
+    `# Souscription ${SITE_NAME}`,
+    "",
+    "Sélectionne ton offre, puis ton moyen de paiement.",
+    "",
+    "## Quelle offre voulez-vous ?",
+    ...offerLines,
+    "",
+    "## Moyen de paiement",
+  ];
+
+  if (!plan) {
+    lines.push("_Choisis une offre ci-dessous pour continuer._");
+  } else if (plan.unavailable) {
+    lines.push("⛔ Cette offre est temporairement indisponible.");
+  } else if (plan.free) {
+    lines.push("🧪 **Test gratuit** — aucun paiement requis.");
+  } else if (pay) {
+    lines.push(`${pay.emoji || "💳"} **${pay.label}** — ${pay.blurb || "sélectionné"}`);
+  } else {
+    lines.push("_Choisis un moyen de paiement ci-dessous._");
+  }
+
+  lines.push("");
+  if (plan && !plan.unavailable && (plan.free || pay)) {
+    lines.push("Tout est prêt → clique **Valider et ouvrir mon ticket**.");
+  } else {
+    lines.push("Complète ta sélection, puis valide pour ouvrir ton ticket.");
+  }
+
+  return new EmbedBuilder().setColor(0x3b82f6).setDescription(lines.join("\n"));
 }
 
 export async function handleIptvButton(interaction) {
@@ -373,6 +450,7 @@ export async function handleIptvSelect(interaction) {
       return true;
     }
     cur.planId = interaction.values[0];
+    if (chosen?.free) delete cur.payId;
   }
   if (id === "iptv-pay") cur.payId = interaction.values[0];
   pendingOrders.set(interaction.user.id, cur);
@@ -388,7 +466,7 @@ export async function handleIptvSelect(interaction) {
     console.error("iptv select editReply:", err?.message || err);
     await interaction
       .followUp({
-        content: "Sélection enregistrée — reclique **Confirmer** si besoin.",
+        content: "Sélection enregistrée — reclique **Valider** si besoin.",
         embeds: payload.embeds,
         components: payload.components,
         flags: MessageFlags.Ephemeral,
