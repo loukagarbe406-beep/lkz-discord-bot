@@ -1,0 +1,25 @@
+{
+  "name": "lkz-discord-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bot Discord LKZ+ — setup salons + pronos foot",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "node bot.js",
+    "register": "node register-commands.js",
+    "pm2:start": "pm2 start bot.js --name lkz-discord-bot --time",
+    "pm2:stop": "pm2 stop lkz-discord-bot",
+    "pm2:restart": "pm2 restart lkz-discord-bot",
+    "pm2:logs": "pm2 logs lkz-discord-bot",
+    "pm2:status": "pm2 status"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "discloud-cli": "^2.11.1",
+    "pm2": "^6.0.8"
+  }
+}

@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: lkz-discord-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: GUILD_ID
+        sync: false
+      - key: PRONOS_CHANNEL_ID
+        sync: false
+      - key: LINKS_CHANNEL_ID
+        sync: false
+      - key: ENABLE_MESSAGE_CONTENT
+        value: "1"
+      - key: SITE_URL
+        value: https://lkzpeuplefr.pages.dev
+      - key: SCORES_POLL_MS
+        value: "180000"
+      - key: PAYPAL_URL
+        sync: false
+      - key: PAYPAL_EMAIL
+        sync: false
+      - key: BANK_IBAN
+        sync: false
+      - key: IPTV_CHANNEL_ID
+        sync: false
+      - key: IPTV_OWNER_ID
+        sync: false
+      - key: IPTV_STAFF_ROLE_ID
+        sync: false
+      - key: IPTV_TICKETS_CATEGORY_ID
+        sync: false

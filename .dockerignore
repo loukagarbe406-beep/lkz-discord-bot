@@ -1,0 +1,5 @@
+# Excludes
+node_modules
+.env
+*.log
+.git
