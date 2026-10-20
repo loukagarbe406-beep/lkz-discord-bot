@@ -20,8 +20,9 @@ export const PLANS = [
     price: "Gratuit",
     months: 0,
     free: true,
+    unavailable: true,
     emoji: "🧪",
-    blurb: "Pour tester le serveur",
+    blurb: "Temporairement indisponible",
   },
   {
     id: "1m",
@@ -160,7 +161,6 @@ export function buildOfferEmbed() {
         "→ Serveurs surveillés pour garder une bonne qualité",
         "",
         "## Nos offres",
-        "🔹 **Test 24h** — **gratuit** (pour tester le serveur)",
         "🔹 **1 mois** — **10 €**",
         "🔹 **3 mois** — **20 €**",
         "🔹 **6 mois** — **35 €**",
@@ -195,19 +195,12 @@ export async function postIptvPanel(channel) {
 }
 
 function planSelectOptions(cur) {
-  return PLANS.map((p) => {
+  return PLANS.filter((p) => !p.unavailable).map((p) => {
     const opt = {
-      label: (p.unavailable
-        ? `${p.label} — indisponible`
-        : `${p.label} — ${p.price}`
-      ).slice(0, 100),
+      label: `${p.label} — ${p.price}`.slice(0, 100),
       value: p.id,
       emoji: { name: p.emoji || "🔹" },
-      description: (
-        p.unavailable
-          ? "Temporairement indisponible"
-          : p.blurb || "Abonnement IPTV"
-      ).slice(0, 100),
+      description: (p.blurb || "Abonnement IPTV").slice(0, 100),
     };
     /* Ne jamais envoyer default:false — Discord peut bloquer le select */
     if (cur.planId === p.id) opt.default = true;
@@ -230,6 +223,11 @@ function paySelectOptions(cur) {
 
 function orderSelectRows(userId) {
   const cur = pendingOrders.get(userId) || {};
+  if (cur.planId && planById(cur.planId)?.unavailable) {
+    delete cur.planId;
+    delete cur.payId;
+    pendingOrders.set(userId, cur);
+  }
   const plan = planById(cur.planId);
   const pay = payById(cur.payId);
   const needsPay = !!(plan && !plan.free && !plan.unavailable);
