@@ -44,12 +44,15 @@ if (!token) {
 const intents = [
   GatewayIntentBits.Guilds,
   GatewayIntentBits.GuildMessages,
-  GatewayIntentBits.GuildMembers,
   GatewayIntentBits.DirectMessages,
 ];
 /* Message Content = intent privilégié Discord (Developer Portal → Bot → activer) */
 if (process.env.ENABLE_MESSAGE_CONTENT === "1") {
   intents.push(GatewayIntentBits.MessageContent);
+}
+/* Server Members Intent — Developer Portal → Bot → Privileged Gateway Intents ON */
+if (process.env.ENABLE_GUILD_MEMBERS === "1") {
+  intents.push(GatewayIntentBits.GuildMembers);
 }
 const client = new Client({
   intents,
