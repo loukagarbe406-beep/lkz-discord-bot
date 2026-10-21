@@ -63,9 +63,11 @@ const SITE_CHANNEL_ID =
   process.env.SITE_CHANNEL_ID?.trim() ||
   process.env.LINKS_CHANNEL_ID?.trim() ||
   "1532150230168899693";
-/** Salon où on ping les nouveaux (défaut = salon site/liens) */
+/** Salon où on ping les nouveaux (défaut = salon IPTV) */
 const WELCOME_PING_CHANNEL_ID =
-  process.env.WELCOME_PING_CHANNEL_ID?.trim() || SITE_CHANNEL_ID;
+  process.env.WELCOME_PING_CHANNEL_ID?.trim() ||
+  process.env.IPTV_CHANNEL_ID?.trim() ||
+  SITE_CHANNEL_ID;
 const WELCOME_PING_MS = Number(process.env.WELCOME_PING_MS || 1000);
 
 /** !match / !matchs / !lien → DM du lien site */
