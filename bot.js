@@ -44,6 +44,7 @@ if (!token) {
 const intents = [
   GatewayIntentBits.Guilds,
   GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.GuildMembers,
   GatewayIntentBits.DirectMessages,
 ];
 /* Message Content = intent privilégié Discord (Developer Portal → Bot → activer) */
@@ -52,13 +53,17 @@ if (process.env.ENABLE_MESSAGE_CONTENT === "1") {
 }
 const client = new Client({
   intents,
-  partials: [Partials.Channel, Partials.Message],
+  partials: [Partials.Channel, Partials.Message, Partials.GuildMember],
 });
 
 const SITE_CHANNEL_ID =
   process.env.SITE_CHANNEL_ID?.trim() ||
   process.env.LINKS_CHANNEL_ID?.trim() ||
   "1532150230168899693";
+/** Salon où on ping les nouveaux (défaut = salon site/liens) */
+const WELCOME_PING_CHANNEL_ID =
+  process.env.WELCOME_PING_CHANNEL_ID?.trim() || SITE_CHANNEL_ID;
+const WELCOME_PING_MS = Number(process.env.WELCOME_PING_MS || 1000);
 
 /** !match / !matchs / !lien → DM du lien site */
 const LINK_CMD_RE = /^\s*!(matchs?|lien|liens|site)\b/i;
@@ -546,6 +551,32 @@ async function pollAndCloseScores() {
 
 /* Salon : !match / !matchs / !lien → lien en MP (jamais le lien dans le chat) */
 /* DM : n’importe quel message → lien site */
+/**
+ * Nouveau membre → mention flash 1s dans le salon (notif → ils y vont),
+ * puis suppression du message (pas de spam @).
+ * Intent : Server Members Intent ON dans le Developer Portal.
+ */
+client.on("guildMemberAdd", async (member) => {
+  try {
+    if (member.user?.bot) return;
+    const channel = await client.channels
+      .fetch(WELCOME_PING_CHANNEL_ID)
+      .catch(() => null);
+    if (!channel || !channel.isTextBased?.()) return;
+
+    const msg = await channel.send({
+      content: `${member}`,
+      allowedMentions: { users: [member.id] },
+    });
+
+    setTimeout(() => {
+      msg.delete().catch(() => {});
+    }, Number.isFinite(WELCOME_PING_MS) ? Math.max(400, WELCOME_PING_MS) : 1000);
+  } catch (e) {
+    console.warn("welcome ping:", e?.message || e);
+  }
+});
+
 client.on("messageCreate", async (message) => {
   try {
     if (message.author?.bot) return;
